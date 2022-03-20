@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .import views
+from kyaloedua import views
+
 
 admin.site.site_header = 'Comaren education Database'
 admin.site.index_title = 'Admin'
@@ -23,6 +24,6 @@ admin.site.index_title = 'Admin'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('edu/', include('kyaloedua.urls')),
+    path('kyaloedua/', include('kyaloedua.urls')),
 ]
 

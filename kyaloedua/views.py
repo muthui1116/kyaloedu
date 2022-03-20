@@ -32,7 +32,7 @@ def loginPage(request):
     context = {
         'page': page
     }
-    return render(request, 'edu/login_register.html', context)
+    return render(request, 'kyaloedua/login_register.html', context)
 
 def logoutUser(request):
     logout(request)
@@ -51,10 +51,10 @@ def registerPage(request):
         else:
             messages.error(request, 'An error occured during registration.')
 
-    return render(request, 'edu/login_register.html', {'form': form})
+    return render(request, 'kyaloedua/login_register.html', {'form': form})
 
 def about(request):
-    return render(request, 'edu/about.html')
+    return render(request, 'kyaloedua/about.html')
 
 def room(request, pk):
     room = get_object_or_404(RoomPost, id=pk)
@@ -74,7 +74,7 @@ def room(request, pk):
         'participants': participants,
     }
     room.participants.add(request.user)
-    return render(request, 'edu/room.html', context)
+    return render(request, 'kyaloedua/room.html', context)
 
 @login_required(login_url='login')
 def create_room(request):
@@ -88,7 +88,7 @@ def create_room(request):
     context = {
             'form': form,
         }
-    return render(request, 'edu/room_form.html', context)
+    return render(request, 'kyaloedua/room_form.html', context)
 
 @login_required(login_url='login')
 def update_room(request, pk):
@@ -104,7 +104,7 @@ def update_room(request, pk):
     context = {
         'form': form,
     }
-    return render(request, 'edu/room_form.html', context)
+    return render(request, 'kyaloedua/room_form.html', context)
 
 @login_required(login_url='login')
 def delete_room(request, pk):
@@ -114,7 +114,7 @@ def delete_room(request, pk):
     if request.method == 'POST':
         room.delete()
         return redirect('home')
-    return render(request, 'edu/delete.html', {'obj': room})
+    return render(request, 'kyaloedua/delete.html', {'obj': room})
 
 @login_required(login_url='login')
 def deleteMessage(request, pk):
@@ -124,7 +124,7 @@ def deleteMessage(request, pk):
     if request.method == 'POST':
         message.delete()
         return redirect('home')
-    return render(request, 'edu/delete.html', {'obj': message})
+    return render(request, 'kyaloedua/delete.html', {'obj': message})
 
 
 

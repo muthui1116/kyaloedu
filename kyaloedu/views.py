@@ -27,7 +27,7 @@ def home(request):
         'room_count': room_count,
         'room_messages': room_messages,
     }
-    return render(request, 'home.html', context)
+    return render(request, 'kyaloedu/home.html', context)
 
 
 

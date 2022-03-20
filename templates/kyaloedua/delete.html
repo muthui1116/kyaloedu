@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block content%}
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="card border-light card-font">
+            <div>
+                <form action="" method="POST">
+                    {% csrf_token%}
+                    <p>Are you sure you want to delete {{ obj}}?</p>
+                    <a href="{{ request.META.HTTP_REFERER}}">Go back</a>
+                    <input type="submit" value="confirm">
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock%}

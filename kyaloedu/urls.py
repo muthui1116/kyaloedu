@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from kyaloedua import views
+from . import views
 
 
 admin.site.site_header = 'Comaren education Database'

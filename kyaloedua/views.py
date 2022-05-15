@@ -1,10 +1,7 @@
-from email import message
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, redirect
-from .models import Message, RoomPost
-from .models import Department
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.db.models import Q
+from kyaloedua.models import Message, RoomPost
+
 from django.contrib.auth.decorators import login_required
 from .models import RoomPost, Message
 from .forms import RoomPostForm
@@ -13,29 +10,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 
-def home(request):
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
-    room_posts = RoomPost.objects.filter(
-        Q(title__icontains=q) |
-        Q(topic__icontains=q) |
-        Q(body__icontains=q) |
-        Q(subtopic__icontains=q)
-    )
-    departments = Department.objects.all()
-    paginator = Paginator(room_posts, 2)
-    room_messages = Message.objects.filter(Q(room__topic__icontains=q))
-
-    page = request.GET.get('page')
-    paged_rooms = paginator.get_page(page)
-    room_count = room_posts.count()
-
-    context = {
-        'room_posts':  paged_rooms,
-        'departments': departments,
-        'room_count': room_count,
-        'room_messages': room_messages,
-    }
-    return render(request, 'home.html', context)
 
 def loginPage(request):
     page  = 'login'
@@ -100,8 +74,8 @@ def room(request, pk):
         'room_messages': room_messages,
         'participants': participants,
     }
-    room.participants.add(request.user)
     return render(request, 'kyaloedua/room.html', context)
+
 
 @login_required(login_url='login')
 def create_room(request):

@@ -5,12 +5,11 @@
     <div class="container px-4 px-lg-5">
       <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="card border-light card-font">
-          <h5>{{ room.subtopic}}</h5>
-          <p>{{ room.body|safe}}</p>
+        <strong>{{ room.subtopic}}</strong>
+          {{ room.body|safe}}
         </div>
       </div>
     </div>
-
     <div class="container px-4 px-lg-5">
       <h3>Conversation</h3>
       <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -20,8 +19,8 @@
               {% if request.user == message.user%}
               <a href="{% url 'delete_message' message.id%}">Delete</a>
               {% endif%}
-            <small> {{ message.user}} {{ message.created|timesince}} ago</small>
-            <p>{{ message.body}}</p>
+            <small> {{ message.user}} {{ message.created|timesince}} ago</small> <br>
+          {{ message.body}}
             <hr />
           </div>
           {% endfor%}
@@ -54,6 +53,5 @@
     </div>
     </div>
   </div>
-  
 </div>
 {% endblock%}
